@@ -1,0 +1,16 @@
+.spotifyButton {
+  background-color: #1db954;
+  border-radius: 3px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.5;
+  margin: 35px 0;
+  padding: 10px 24px;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  border: none;
+}
