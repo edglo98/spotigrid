@@ -14,3 +14,7 @@
   white-space: nowrap;
   border: none;
 }
+
+.spotifyButton:hover {
+  background-color: #1ed760;
+}
