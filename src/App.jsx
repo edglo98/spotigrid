@@ -1,8 +1,11 @@
+import { SessionContextProvider } from './contexts/SessionContext'
 import AuthRouter from './router/AuthRouter'
 
 function App () {
   return (
-    <AuthRouter />
+    <SessionContextProvider>
+      <AuthRouter />
+    </SessionContextProvider>
   )
 }
 
