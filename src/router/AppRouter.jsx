@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { Redirect, Route, Switch, useHistory } from 'react-router-dom'
-import HomePage from '../pages/app/HomePage'
+import HomePage from '../pages/app/HomePage/HomePage'
 import useSession from '../hooks/useSession'
 import Navbar from '../components/Navbar/Navbar'
 

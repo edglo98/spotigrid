@@ -5,3 +5,20 @@
   text-decoration: none;
   color: var(--spotify-green);
 }
+
+.linkButton:hover {
+  color: #1ed760;
+}
+
+.linkButtonDisabled {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  text-decoration: none;
+  cursor: not-allowed;
+  color: var(--text-color-secondary);
+}
+
+.linkButtonDisabled:hover {
+  color: var(--text-color-secondary);
+}
