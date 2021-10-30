@@ -1,0 +1,7 @@
+.linkButton {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  text-decoration: none;
+  color: var(--spotify-green);
+}
