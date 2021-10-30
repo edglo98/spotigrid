@@ -8,6 +8,7 @@
   --text-color-main: #fff;
   --text-color-secondary: #b3b3b3;
   --remarked-color: 179, 179, 179;
+  --spotify-green: #1db954;
 }
 
 html{
@@ -64,11 +65,4 @@ h5 {
   margin: 0.27rem 0;
   line-height: 1.2;
   font-weight: bold;
-}
-
-.main-container {
-  height: 100vh;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
 }

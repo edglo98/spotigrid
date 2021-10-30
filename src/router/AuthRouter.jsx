@@ -7,7 +7,7 @@ import AppRouter from './AppRouter'
 const AuthRouter = () => {
   return (
     <Router>
-      <div className='main-container'>
+      <div>
         <Switch>
           <Route path='/login' component={LoginPage} />
           <Route path='/authredirect' component={RedirectedAuth} />

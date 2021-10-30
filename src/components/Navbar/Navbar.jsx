@@ -13,7 +13,13 @@ const Navbar = () => {
   return (
     <nav className={`${isOpen ? styles.nabvarClose : null} ${styles.navbar}`}>
       <span onClick={toggleMenu} className={styles.handlerNavbar}>
-        <MdKeyboardArrowRight size={28} className={`${styles.arrowTrans} ${!isOpen ? styles.handlerNavbarClose : null}`} />
+        <MdKeyboardArrowRight
+          size={28}
+          className={`
+            ${styles.arrowTrans}
+            ${!isOpen ? styles.handlerNavbarClose : null}
+          `}
+        />
       </span>
       <ul>
         <li>

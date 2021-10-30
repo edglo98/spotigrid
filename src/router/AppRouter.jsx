@@ -15,7 +15,7 @@ const AppRouter = () => {
   }, [])
 
   return (
-    <div style={{ display: 'flex', height: '100vh' }}>
+    <div style={{ display: 'flex', minHeight: '100vh' }}>
       <Navbar />
       <Switch>
         <Route path='/' component={HomePage} />
