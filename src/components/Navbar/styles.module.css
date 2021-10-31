@@ -1,7 +1,9 @@
 .navbar {
   background-color: var(--background-dark-3);
-  position: relative;
   transition: margin-left 0.3s ease-out;
+  height: 100vh;
+  position: sticky;
+  top: 0;
 }
 
 .nabvarClose {

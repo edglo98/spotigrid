@@ -1,11 +1,13 @@
 import { useState } from 'react'
-import useSession from '../../hooks/useSession'
-import GridGenerateButton from '../../components/GridGenerateButton/GridGenerateButton'
 import axios from 'axios'
 import { MdOutlineContentCopy, MdOpenInNew } from 'react-icons/md'
-import RadioButton from '../../components/RadioButton/RadioButton'
-import LinkButton from '../../components/LinkButton/LinkButton'
-import Button from '../../components/Button/Button'
+import styles from './styles.module.css'
+import useSession from '../../../hooks/useSession'
+import GridGenerateButton from '../../../components/GridGenerateButton/GridGenerateButton'
+import RadioButton from '../../../components/RadioButton/RadioButton'
+import LinkButton from '../../../components/LinkButton/LinkButton'
+import Button from '../../../components/Button/Button'
+import TrackCard from '../../../components/TrackCard/TrackCard'
 
 const HomePage = () => {
   const { user } = useSession()
@@ -15,6 +17,16 @@ const HomePage = () => {
     typeSearch: 'tracks',
     time_range: 'long_term'
   })
+  const [audioPlay, setAudioPlay] = useState({})
+
+  const handlePlayAudio = (trackId, htmlTrack, setPlaying) => {
+    if (audioPlay.trackId === trackId) return
+    if (audioPlay.trackId && audioPlay.trackId !== trackId) {
+      audioPlay.htmlTrack.pause()
+      audioPlay.setPlaying(false)
+    }
+    setAudioPlay({ trackId, htmlTrack, setPlaying })
+  }
 
   const handleChangeTypeSearch = (e) => {
     setParams({
@@ -54,9 +66,9 @@ const HomePage = () => {
   console.log(tracks)
 
   return (
-    <div style={{ margin: '.5px auto', padding: '0px 1rem', flex: 1, maxWidth: 950 }}>
-      <h1 style={{ textAlign: 'center', margin: '50px 0px 35px 0px' }}>Spotigrid</h1>
-      <h4 style={{ textAlign: 'center', margin: '50px 0px 35px 0px' }}>Press the logo for generate your own grid layout with your top music list</h4>
+    <div style={{ margin: '2rem auto', padding: '0px 1rem', flex: 1, maxWidth: 950 }}>
+      <h1 className={styles.centerTitle}>Spotigrid</h1>
+      <h4 className={styles.centerTitle}>Press the logo for generate your own grid layout with your top music list</h4>
 
       <section style={{ display: 'grid', placeItems: 'center', margin: '2rem 0' }}>
         <GridGenerateButton
@@ -65,7 +77,7 @@ const HomePage = () => {
         />
       </section>
 
-      <h4 style={{ textAlign: 'center', margin: '50px 0px 35px 0px' }}>Generate Spotigrid</h4>
+      <h4 className={styles.centerTitle}>Generate Spotigrid</h4>
       <section style={{ display: 'flex', justifyContent: 'space-around', gap: '2rem' }}>
         <div style={{ minWidth: 250 }}>
           <h5>Generate from my top <b>{params.typeSearch}</b></h5>
@@ -106,25 +118,33 @@ const HomePage = () => {
         </div>
       </section>
 
-      <h4 style={{ textAlign: 'center', margin: '50px 0px 35px 0px' }}>Your grid top tracks</h4>
+      <h4 className={styles.centerTitle}>Your Spotigrid top tracks here</h4>
       <section style={{ display: 'flex', justifyContent: 'space-around', gap: '2rem' }}>
         <LinkButton
+          disabled={tracks.length === 0}
+          target='_blank'
           icon={<MdOpenInNew size={22} />}
           label='Watch your grid here'
-          to='/grid'
+          to='/grid' // param
         />
         <Button
+          disabled={tracks.length === 0}
           leftIcon={<MdOutlineContentCopy size={22} />}
           label='Copy link to share'
           onClick={() => {}}
         />
       </section>
 
-      <h4 style={{ textAlign: 'center', margin: '50px 0px 35px 0px' }}>Your list of tracks</h4>
+      <h4 className={styles.centerTitle}>The list of tracks</h4>
+      {
+        tracks.length === 0
+          ? <h5 className={styles.secondaryText}>You haven't yet generated your track list 🥲</h5>
+          : <h5 className={styles.secondaryText}>Remember, to see the grid you have to go to the link above 👆🏼</h5>
+      }
       <section>
-        <div>
-          lista
-        </div>
+        {
+          tracks.map(track => <TrackCard key={track.id} track={track} onPlay={handlePlayAudio} />)
+        }
       </section>
     </div>
   )

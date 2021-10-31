@@ -1,0 +1,9 @@
+.centerTitle {
+  text-align: center;
+  margin: 50px 0px 35px 0px;
+}
+
+.secondaryText {
+  text-align: center;
+  color: var(--text-color-secondary);
+}

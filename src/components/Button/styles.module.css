@@ -10,3 +10,12 @@
   gap: .6rem;
   cursor: pointer;
 }
+
+.button:hover {
+  background-color: #1ed760;
+}
+
+.button:disabled {
+  background-color: var(--text-color-secondary);
+  cursor: not-allowed;
+}

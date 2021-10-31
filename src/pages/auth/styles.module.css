@@ -21,7 +21,7 @@
     height: auto;
     aspect-ratio: 1/1;
     background-size: cover;
-    opacity: 0.4;
+    opacity: 0.35;
     transition: transform 0.3s ease-in-out, opacity 0.2s ease-in-out;
 }
 

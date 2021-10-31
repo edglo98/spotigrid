@@ -18,7 +18,7 @@ const renderAlbums = scrapingAlbums.map(albumSrc => {
 
 const LoginPage = () => {
   return (
-    <div style={{ height: '100%', display: 'grid', placeItems: 'center' }}>
+    <div style={{ height: '100vh', display: 'grid', placeItems: 'center', overflow: 'hidden', position: 'relative' }}>
       <section className={styles.bgLogin}>
         {renderAlbums}
       </section>
