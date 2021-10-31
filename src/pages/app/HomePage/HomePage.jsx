@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import axios from 'axios'
-import { MdOutlineContentCopy, MdOpenInNew } from 'react-icons/md'
+import { MdOutlineContentCopy } from 'react-icons/md'
 import styles from './styles.module.css'
 import useSession from '../../../hooks/useSession'
 import GridGenerateButton from '../../../components/GridGenerateButton/GridGenerateButton'
@@ -63,8 +63,6 @@ const HomePage = () => {
     }
   }
 
-  console.log(tracks)
-
   return (
     <div style={{ margin: '2rem auto', padding: '0px 1rem', flex: 1, maxWidth: 950 }}>
       <h1 className={styles.centerTitle}>Spotigrid</h1>
@@ -77,7 +75,7 @@ const HomePage = () => {
         />
       </section>
 
-      <h4 className={styles.centerTitle}>Generate Spotigrid</h4>
+      <h4 className={styles.centerTitle}>Generate Spotigrid from</h4>
       <section style={{ display: 'flex', justifyContent: 'space-around', gap: '2rem' }}>
         <div style={{ minWidth: 250 }}>
           <h5>Generate from my top <b>{params.typeSearch}</b></h5>
@@ -123,9 +121,8 @@ const HomePage = () => {
         <LinkButton
           disabled={tracks.length === 0}
           target='_blank'
-          icon={<MdOpenInNew size={22} />}
-          label='Watch your grid here'
-          to='/grid' // param
+          label={<h5>Watch your grid here</h5>}
+          to='/grid' // params
         />
         <Button
           disabled={tracks.length === 0}
@@ -139,11 +136,11 @@ const HomePage = () => {
       {
         tracks.length === 0
           ? <h5 className={styles.secondaryText}>You haven't yet generated your track list 🥲</h5>
-          : <h5 className={styles.secondaryText}>Remember, to see the grid you have to go to the link above 👆🏼</h5>
+          : <h5 className={styles.secondaryText}>Remember, to see your Spotigrid you have to go to the link above 👆🏼</h5>
       }
-      <section>
+      <section className={styles.listOfTracks}>
         {
-          tracks.map(track => <TrackCard key={track.id} track={track} onPlay={handlePlayAudio} />)
+          tracks.map(track => <TrackCard key={track.id} track={track} onPressMedia={handlePlayAudio} />)
         }
       </section>
     </div>

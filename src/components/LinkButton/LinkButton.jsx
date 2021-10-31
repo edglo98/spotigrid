@@ -1,8 +1,9 @@
 /* eslint-disable react/jsx-closing-tag-location */
 import styles from './styles.module.css'
 import { Link } from 'react-router-dom'
+import { MdOpenInNew } from 'react-icons/md'
 
-const LinkButton = ({ icon, label, to, disabled, ...props }) => {
+const LinkButton = ({ iconSize = 22, label, to, disabled, ...props }) => {
   return (
     !disabled
       ? <Link
@@ -10,14 +11,14 @@ const LinkButton = ({ icon, label, to, disabled, ...props }) => {
           className={styles.linkButton}
           to={to}
         >
-        {icon && icon}
-        <h5>{label}</h5>
+        <MdOpenInNew size={iconSize} />
+        {label}
       </Link>
       : <span
           className={styles.linkButtonDisabled}
         >
-        {icon && icon}
-        <h5>{label}</h5>
+        <MdOpenInNew size={iconSize} />
+        {label}
       </span>
   )
 }
