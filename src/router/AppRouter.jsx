@@ -3,6 +3,7 @@ import { Redirect, Route, Switch, useHistory } from 'react-router-dom'
 import HomePage from '../pages/app/HomePage/HomePage'
 import useSession from '../hooks/useSession'
 import Navbar from '../components/Navbar/Navbar'
+import SpotigridPage from '../pages/app/SpotigridPage/SpotigridPage'
 
 const AppRouter = () => {
   const history = useHistory()
@@ -18,7 +19,8 @@ const AppRouter = () => {
     <div style={{ display: 'flex', minHeight: '100vh' }}>
       <Navbar />
       <Switch>
-        <Route path='/' component={HomePage} />
+        <Route path='/myspotigrid' component={SpotigridPage} />
+        <Route exact path='/' component={HomePage} />
         <Redirect to='/' />
       </Switch>
     </div>
