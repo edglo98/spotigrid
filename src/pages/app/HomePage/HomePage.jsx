@@ -85,12 +85,12 @@ const HomePage = () => {
             name='tracks'
             label='Tracks'
           />
-          <RadioButton
+          {/* <RadioButton
             onChange={handleChangeTypeSearch}
             checked={params.typeSearch === 'artists'}
             name='artists'
             label='Artists'
-          />
+          /> */}
         </div>
 
         <div style={{ minWidth: 250 }}>
@@ -122,7 +122,7 @@ const HomePage = () => {
           disabled={tracks.length === 0}
           target='_blank'
           label={<h5>Watch your grid here</h5>}
-          to='/grid' // params
+          to='/myspotigrid' // params
         />
         <Button
           disabled={tracks.length === 0}
