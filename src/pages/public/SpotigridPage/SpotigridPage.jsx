@@ -1,5 +1,5 @@
 import { decode } from 'js-base64'
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router'
 import BetterScroll from 'better-scroll'
 import styles from './styles.module.css'
@@ -52,8 +52,6 @@ const SpotigridPage = () => {
 
     const $songs = songsRef.current
 
-    console.log($songs[0].domElement)
-
     bscroll.scroller.scrollToElement(
       $songs[Math.floor($songs.length / 2) - 2].domElement,
       1000,
@@ -70,32 +68,43 @@ const SpotigridPage = () => {
     })
   }, [trackList])
 
+  useEffect(() => {
+    // add overflow hidden to body
+    document.body.style.overflow = 'hidden'
+    return () => {
+      // remove overflow hidden to body
+      document.body.style.overflow = 'visible'
+    }
+  }, [])
+
   return (
-    <main className={styles.mainTracksContainer} ref={mainRef}>
-      <aside
-        className={styles.listOfTracks}
-        style={{
-          '--width': `${currentSize * maxElementsPerRow}px`,
-          '--height': `${Math.ceil(trackList.length / maxElementsPerRow) * currentSize}px`,
-          '--size': `${currentSize}px`,
-          '--maxElementsPerRow': maxElementsPerRow
-        }}
-      >
-        {
-          trackList.map((track, i) => {
-            return (
-              <TrackCard
-                ref={element => { songsRef.current[i] = element }}
-                size={currentSize}
-                key={track.id}
-                track={track}
-                onPressMedia={handlePlayAudio}
-              />
-            )
-          })
-        }
-      </aside>
-    </main>
+    <div style={{ minHeight: '100vh' }}>
+      <main className={styles.mainTracksContainer} ref={mainRef}>
+        <aside
+          className={styles.listOfTracks}
+          style={{
+            '--width': `${currentSize * maxElementsPerRow}px`,
+            '--height': `${Math.ceil(trackList.length / maxElementsPerRow) * currentSize}px`,
+            '--size': `${currentSize}px`,
+            '--maxElementsPerRow': maxElementsPerRow
+          }}
+        >
+          {
+            trackList.map((track, i) => {
+              return (
+                <TrackCard
+                  ref={element => { songsRef.current[i] = element }}
+                  size={currentSize}
+                  key={track.id}
+                  track={track}
+                  onPressMedia={handlePlayAudio}
+                />
+              )
+            })
+          }
+        </aside>
+      </main>
+    </div>
   )
 }
 
