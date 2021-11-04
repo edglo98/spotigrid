@@ -19,7 +19,7 @@ const AppRouter = () => {
     <div style={{ display: 'flex', minHeight: '100vh' }}>
       <Navbar />
       <Switch>
-        <Route path='/myspotigrid' component={SpotigridPage} />
+        <Route path='/myspotigrid/:tracks' component={SpotigridPage} />
         <Route exact path='/' component={HomePage} />
         <Redirect to='/' />
       </Switch>

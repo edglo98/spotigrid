@@ -1,0 +1,28 @@
+body {
+  overflow: hidden;
+}
+
+.mainTracksContainer {
+  width: 3.125rem;
+  height: 3.125rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -1.5625rem;
+  margin-top: -1.5625rem;
+}
+
+.listOfTracks {
+  grid-template-columns: repeat(var(--maxElementsPerRow), var(--size));
+  grid-template-rows: repeat(mar(--maxElementsPerRow), var(--size));
+  width: var(--width);
+  height: var(--height);
+  transform-style: preserve-3d;
+  position: relative;
+  display: grid;
+  cursor: grab;
+}
+
+.listOfTracks:active {
+  cursor: grabbing;
+}

@@ -8,6 +8,7 @@ import RadioButton from '../../../components/RadioButton/RadioButton'
 import LinkButton from '../../../components/LinkButton/LinkButton'
 import Button from '../../../components/Button/Button'
 import TrackCard from '../../../components/TrackCard/TrackCard'
+import { encode } from 'js-base64'
 
 const HomePage = () => {
   const { user } = useSession()
@@ -51,11 +52,23 @@ const HomePage = () => {
         },
         params: {
           time_range: params.time_range,
-          limit: 40
+          limit: 34
         }
       })
 
-      setTracks(data.items)
+      const itemsParseted = data.items.map(item => {
+        return {
+          id: item.id,
+          name: item.name,
+          artists: item.artists.map(artist => artist.name),
+          album: item.album.name,
+          image: item.album.images[0].url,
+          preview: item.preview_url,
+          uri: item.uri
+        }
+      })
+
+      setTracks(itemsParseted)
     } catch (error) {
       console.log(error)
     } finally {
@@ -122,7 +135,7 @@ const HomePage = () => {
           disabled={tracks.length === 0}
           target='_blank'
           label={<h5>Watch your grid here</h5>}
-          to='/myspotigrid' // params
+          to={`/myspotigrid/${encode(JSON.stringify(tracks), true)}`}
         />
         <Button
           disabled={tracks.length === 0}
