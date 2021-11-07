@@ -2,8 +2,9 @@ import { generateRandomString } from '../../helpers/generators'
 import styles from './index.module.css'
 
 const clientId = '75ea07921ce84791abfe00f71092f22f'
-// const redirectUri = 'http://localhost:3000/authredirect'
-const redirectUri = 'https://spotigrid.vercel.app/authredirect'
+const redirectUri = process.env.NODE_ENV === 'development'
+  ? 'http://localhost:3000/authredirect'
+  : 'https://spotigrid.vercel.app/authredirect'
 const scope = 'user-read-private user-read-email user-top-read user-read-recently-played user-read-playback-position'
 const state = generateRandomString(16)
 
